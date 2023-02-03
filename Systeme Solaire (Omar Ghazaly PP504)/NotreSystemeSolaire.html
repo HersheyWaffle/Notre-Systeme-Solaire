@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Notre Système Solaire</title>
+		<link rel="stylesheet" type="text/css" href="syssol.css">
+		<link rel="icon" href="https://drive.google.com/uc?export=view&id=1uTcNNvEhS8sqOphjyJJ-hXFq3f3q_iX9">
+	</head>
+	<style>
+		.row {
+  			display: flex;
+		}
+		.column {
+	  		flex: 50%;
+	  		width: 512px;
+  			padding: 10px;
+  			font-size: 16px;
+  			border: 10px;
+			border-style: groove;
+			background-color: #aaa;
+		}
+		.sysmap {
+		  	height: 532px;
+		  	width: 960px;
+		  	position: relative;
+		  	background: url('https://drive.google.com/uc?export=view&id=12Q2TMUDcG6V6cPl3mgyifsMAM7noCtWs') no-repeat center;
+		  	background-size: 960px 532px
+
+		}
+		.invisible-area {
+		  	position: absolute;
+		}
+		.sun{
+		    height: 80px;
+		  	width: 96px;
+		  	top: 40px;
+		  	left: 40px;
+		}
+		.mercury {
+			height: 32px;
+			width: 32px;
+		 	top:116px;
+		  	left: 132px;
+		}
+		.venus {
+			height: 38px;
+			width: 38px;
+		 	top:60px;
+		  	left: 196px;
+		}
+		.earth {
+			height: 48px;
+			width: 48px;
+		 	top:90px;
+		  	left: 264px;
+		}
+		.moon {
+			height: 28px;
+			width: 28px;
+		 	top:92px;
+		  	left: 240px;
+		}
+		.mars {
+			height: 42px;
+			width: 42px;
+		 	top:112px;
+		  	left: 340px;
+		}
+		.phobos {
+			height: 24px;
+			width: 24px;
+		 	top:112px;
+		  	left: 316px;
+		}
+		.deimos {
+			height: 24px;
+			width: 24px;
+		 	top:136px;
+		  	left: 316px;
+		}
+		.ceres {
+			height: 28px;
+			width: 28px;
+		 	top:86px;
+		  	left: 420px;
+		}
+		.jupiter {
+			height: 72px;
+			width: 64px;
+		 	top:120px;
+		  	left: 510px;
+		}
+		.io {
+			height: 24px;
+			width: 24px;
+		 	top:180px;
+		  	left: 500px;
+		}
+		.ganymede {
+			height: 24px;
+			width: 24px;
+		 	top:148px;
+		  	left: 572px;
+		}
+		.callisto {
+			height: 24px;
+			width: 24px;
+		 	top:128px;
+		  	left: 472px;
+		}
+		.europa {
+			height: 24px;
+			width: 24px;
+		 	top:112px;
+		  	left: 500px;
+		}
+		.saturn {
+			height: 68px;
+			width: 68px;
+		 	top:188px;
+		  	left: 640px;
+		}
+		.titan {
+			height: 28px;
+			width: 28px;
+		 	top:204px;
+		  	left: 600px;
+		}
+		.enceladus {
+			height: 28px;
+			width: 28px;
+		 	top:240px;
+		  	left: 680px;
+		}
+		.uranus {
+			height: 56px;
+			width: 56px;
+		 	top:280px;
+		  	left: 728px;
+		}
+		.oberon {
+			height: 24px;
+			width: 24px;
+		 	top:288px;
+		  	left: 700px;
+		}
+		.miranda {
+			height: 24px;
+			width: 24px;
+		 	top:312px;
+		  	left: 772px;
+		}
+		.neptune {
+			height: 48px;
+			width: 48px;
+		 	top:360px;
+		  	left: 804px;
+		}
+		.triton {
+			height: 20px;
+			width: 20px;
+		 	top:372px;
+		  	left: 780px;
+		}
+		.pluto {
+			height: 24px;
+			width: 24px;
+		 	top:432px;
+		  	left: 830px;
+		}
+		.charon {
+			height: 20px;
+			width: 20px;
+		 	top:432px;
+		  	left: 856px;
+		}
+		.makemake {
+			height: 20px;
+			width: 20px;
+		 	top:456px;
+		  	left: 864px;
+		}
+		.haumea {
+			height: 20px;
+			width: 20px;
+		 	top:480px;
+		  	left: 880px;
+		}
+		.eris {
+			height: 20px;
+			width: 20px;
+		 	top:508px;
+		  	left: 900px;
+		}
+		.tooltip {
+		  	display: none;
+		  	background: #16004f;
+		  	color: white;
+		  	border-radius: 5px;
+		  	border: 1px white solid;
+		  	position: absolute;
+		  	top: 25px;
+		  	width: 240px;
+		  	height: 270px;
+		  	padding-left: 4px;
+		}
+		
+		.invisible-area:hover .tooltip {
+		  	display: block;
+		}
+	</style>
+	<body>
+	<div class="main">	
+		<div class="sidenav">
+			<a href="NotreSystemeSolaire.html">Système Solaire</a>
+  			<a href="sun.html">Soleil</a>
+  			<a href="mercury.html">Mercure</a>
+  			<a href="venus.html">Vénus</a>
+		  	<a href="earth.html">Terre</a>
+		  	<a href="moon.html">Lune</a>
+		  	<a href="mars.html">Mars</a>
+		  	<a href="phobos.html">Phobos</a>
+		  	<a href="deimos.html">Déimos</a>
+		  	<a href="ceres.html">Cérès</a>
+		  	<a href="Jupiter.html">Jupiter</a>
+		  	<a href="europa.html">Europe</a>
+		  	<a href="callsito.html">Callisto</a>
+		  	<a href="io.html">Io</a>
+		  	<a href="ganymede.html">Ganymède</a>
+		  	<a href="saturn.html">Saturne</a>
+		  	<a href="titan.html">Titan</a>
+		  	<a href="encealdus.html">Encelade</a>
+		  	<a href="uranus.html">Uranus</a>
+		  	<a href="miranda.html">Miranda</a>
+		  	<a href="oberon.html">Obéron</a>
+		  	<a href="neptune.html">Neptune</a>
+		  	<a href="triton.html">Triton</a>
+		  	<a href="pluto.html">Pluton</a>
+		  	<a href="charon.html">Charon</a>
+		  	<a href="makemake.html">Makémaké</a>
+		  	<a href="haumea.html">Hauméa</a>
+		  	<a href="eris.html">Éris</a>
+		</div>
+		<div id="title">
+			<h1>Notre Système Solaire</h1>
+		</div>
+		<br>
+		<div class="sysmap" style="border: 2px solid #fff;margin: auto;">
+  			<div class="invisible-area sun">
+    			<div class="tooltip">
+     				<div style="text-align: center;"><u>Soleil<sup><a href="#li5" style="color: green">5</a> <a href="#li9" style="color: green">9</a></sup></u></div>
+					Diamètre: 1,4 millions de kilomètres <br>
+					Masse: 2,0x1030 kg <br>
+					Température minimale: 5500<sup>o</sup>C (Surface) <br>
+					Température maximale: 15 millions de degrés celsius (Noyau) <br>
+					Orbite: Centre de la Voie Lactée <br>
+					Distance d’Orbite: 2,7x10<sup>17</sup> km <br> 
+					Révolution: 250 millions d'années <br>
+					Rotation: 25 jours <br>
+					Type: Étoile Naine Jaune <br>
+					Composition: Hydrogène et Hélium <br>
+    			</div>
+  			</div>
+    		<div class="invisible-area mercury">
+    			<div class="tooltip">
+     				<div style="text-align: center;"><u>Mercure<sup><a href="#li1" style="color: green">1</a> <a href="#li5" style="color: green">5</a></sup></u></div>
+					Diamètre: 4880 km<br>
+					Masse: 3,301 × 10<sup>23</sup> kg<br>
+					Température minimale: -173<sup>o</sup>C<br>
+					Température maximale: 427<sup>o</sup>C<br>
+					Orbite: Soleil<br>
+					Distance d’Orbite: 57,9 millions de kilomètres<br>
+					Révolution: 88 jours<br>
+					Rotation: 176 jours<br>
+					Type: Planète Tellurique<br>
+					Composition: Hydrogène, Hélium, Oxygène, Potassium et Sodium (exosphère)<br>
+    			</div>
+    		</div>
+    		<div class="invisible-area venus">
+    			<div class="tooltip">
+     				<div style="text-align: center;"><u>Vénus<sup><a href="#li5" style="color: green">5</a> <a href="#li9" style="color: green">9</a></sup></u></div>
+					Diamètre: 12 104 km<br>
+					Masse: 4,868 x10<sup>24</sup> kg<br>
+					Température minimale: 450<sup>o</sup>C<br>
+					Température maximale: 470<sup>o</sup>C<br>
+					Orbite: Soleil<br>
+					Distance d’Orbite: 108 208 000 km<br>
+					Révolution: 224,7 jours<br>
+					Rotation: 243 jours<br>
+					Type: Planète Tellurique<br>
+					Composition: Dioxyde de Carbone, Acide Sulfurique<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area earth">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Terre<sup><a href="#li5" style="color: green">5</a> <a href="#li9" style="color: green">9</a></sup></u></div>
+					Diamètre: 12 742 km<br>
+					Masse: 5,97x10<sup>24</sup> kg<br>
+					Température minimale: -89,2<sup>o</sup>C<br>
+					Température maximale: 56,7<sup>o</sup>C<br>
+					Orbite: Soleil<br>
+					Distance d’Orbite: 150 millions de kilomètres<br>
+					Révolution: 365,26 jours<br>
+					Rotation: 23,9 heures<br>
+					Type: Planète Tellurique<br>
+					Composition: Eau, azote, oxygène<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area moon">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Lune<sup><a href="#li5" style="color: green">5</a></sup></u></div>
+					Diamètre: 3 476 km<br>
+					Masse: 7,347x10<sup>22</sup> kg<br>
+					Température minimale: -248<sup>o</sup>C<br>
+					Température maximale: 123<sup>o</sup>C<br>
+					Orbite: Terre<br>
+					Distance d’Orbite: 384 400 km<br>
+					Révolution: 27,3 jours<br>
+					Rotation: 27,3 jours<br>
+					Type: Satellite Naturel<br>
+					Composition: Aucune atmosphère<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area mars">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Mars<sup><a href="#li5" style="color: green">5</a> <a href="#li9" style="color: green">9</a></sup></u></div>
+					Diamètre: 6791 km<br>
+					Masse: 6,417x10<sup>23</sup> kg<br>
+					Température minimale: -140<sup>o</sup>C<br>
+					Température maximale: 30<sup>o</sup>C<br>
+					Orbite: Soleil<br>
+					Distance d’Orbite: 227 939 200 km<br>
+					Révolution: 687 jours<br>
+					Rotation: 24 heures et 40 minutes<br>
+					Type: Planète Tellurique<br>
+					Composition: Dioxyde de Carbone, Azote, Argon<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area phobos">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Phobos<sup><a href="#li9" style="color: green">9</a> <a href="#li11" style="color: green">11</a></sup></u></div>
+					Diamètre: 22,2 km<br>
+					Masse: 1,07x10<sup>16</sup> kg<br>
+					Température minimale: -112<sup>o</sup>C<br>
+					Température maximale: -4<sup>o</sup>C<br>
+					Orbite: Mars<br>
+					Distance d’Orbite: 6000 km<br>
+					Révolution: 8,2 heures<br>
+					Rotation: 24 heures et 40 minutes<br>
+					Type: Satellite Naturel<br>
+					Composition: Aucune atmosphère<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area deimos">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Déimos<sup><a href="#li7" style="color: green">7</a> <a href="#li9" style="color: green">9</a> <a href="#li11" style="color: green">11</a></sup></u></div>
+					Diamètre: 12,4 km<br>
+					Masse: 1,48x10<sup>15</sup> kg<br>
+					Température minimale: -77<sup>o</sup>C<br>
+					Température maximale: -3<sup>o</sup>C<br>
+					Orbite: Mars<br>
+					Distance d’Orbite: 384 400 km<br>
+					Révolution: 30 heures<br>
+					Rotation: 24 heures et 40 minutes<br>
+					Type: Satellite Naturel<br>
+					Composition: Aucune atmosphère<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area ceres">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Cérès<sup><a href="#li8" style="color: green">8</a> <a href="#li9" style="color: green">9</a> <a href="#li16" style="color: green">16</a></sup></u></div>
+					Diamètre: 952 km<br>
+					Masse: 9,35x10<sup>20</sup> kg<br>
+					Température minimale: -143<sup>o</sup>C<br>
+					Température maximale: -73<sup>o</sup>C<br>
+					Orbite: Soleil<br>
+					Distance d’Orbite: 413 millions de kilomètres <br>
+					Révolution: 4,6 ans<br>
+					Rotation: 9 heures<br>
+					Type: Planète Naine<br>
+					Composition: Aucune atmosphère<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area jupiter">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Jupiter<sup><a href="#li5" style="color: green">5</a></sup></u></div>
+					Diamètre: 139 822 km<br>
+					Masse: 1,9x10<sup>27</sup> kg<br>
+					Température minimale: -161<sup>o</sup>C<br>
+					Température maximale: -108<sup>o</sup>C<br>
+					Orbite: Soleil<br>
+					Distance d’Orbite: 778,6 millions de kilomètres<br>
+					Révolution: 11,8 ans<br>
+					Rotation: 10 heures<br>
+					Type: Planète Géante Gazeuse<br>
+					Composition: Hydrogène, Hélium, Méthane<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area io">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Io<sup><a href="#li2" style="color: green">2</a> <a href="#li9" style="color: green">9</a> <a href="#li11" style="color: green">11</a> <a href="#li20" style="color: green">20</a></sup></u></div>
+					Diamètre: 3 643,2 km<br>
+					Masse: 8,93x10<sup>22</sup> kg<br>
+					Température minimale: -183<sup>o</sup>C<br>
+					Température maximale: -143<sup>o</sup>C<br>
+					Orbite: Jupiter<br>
+					Distance d’Orbite: 421 800 km<br>
+					Révolution: 1,8 jours<br>
+					Rotation: 1,8 jours<br>
+					Type: Satellite Naturel<br>
+					Composition: SO, SO2<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area callisto">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Callisto<sup><a href="#li9" style="color: green">9</a> <a href="#li13" style="color: green">13</a></sup></u></div>
+					Diamètre: 4820 km<br>
+					Masse: 1,08x10<sup>23</sup> kg<br>
+					Température maximale: -126<sup>o</sup>C<br>
+					Température minimale: -198<sup>o</sup>C<br>
+					Orbite: Jupiter<br>
+					Distance d’Orbite: 1 882 932 km<br>
+					Révolution:  16,7 jours<br>
+					Rotation:  16,7 jours<br>
+					Type: Satellite Naturel<br>
+					Composition: Dioxyde de Carbone<br>
+    			</div>
+ 	 		</div>	
+ 	 		<div class="invisible-area ganymede">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Ganymède<sup><a href="#li9" style="color: green">9</a> <a href="#li13" style="color: green">13</a></sup></u></div>
+					Diamètre: 5 262,4 km<br>
+					Masse: 1,48x10<sup>23</sup> kg<br>
+					Température maximale: -115<sup>o</sup>C<br>
+					Température minimale: -179<sup>o</sup>C<br>
+					Orbite: Jupiter<br>
+					Distance d’Orbite: 1 070 400 km<br>
+					Révolution: 7,2 jours<br>
+					Rotation:7,2 jours<br>
+					Type: Satellite Naturel<br>
+					Composition: Oxygène<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area europa">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Europe<sup><a href="#li9" style="color: green">9</a> <a href="#li23" style="color: green">23</a></sup></u></div>
+					Diamètre: 3 122 km<br>
+					Masse: 4,80x10<sup>22</sup> kg<br>
+					Température Moyenne: -173,15<sup>o</sup>C<br>
+					Orbite: Jupiter<br>
+					Distance d’Orbite: 1 153 900 km<br>
+					Révolution: 3,5 jours<br>
+					Rotation: 3,5 jours<br>
+					Type: Satellite Naturel<br>
+					Composition: Oxygène, Eau<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area saturn">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Saturne<sup><a href="#li5" style="color: green">5</a> <a href="#li9" style="color: green">9</a></sup></u></div>
+					Diamètre: 116 464 km<br>
+					Masse: 5,68x10<sup>26</sup> kg<br>
+					Température minimale: -189<sup>o</sup>C<br>
+					Température maximale: -139<sup>o</sup>C<br>
+					Orbite: Soleil<br>
+					Distance d’Orbite: 1,43 milliards de kilomètres<br>
+					Révolution: 29,5 ans<br>
+					Rotation: 10,5 heures<br>
+					Type: Planète Géante Gazeuse<br>
+					Composition: Hydrogène, Hélium<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area titan">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Titan<sup><a href="#li9" style="color: green">9</a></sup></u></div>
+					Diamètre: 5 149 km<br>
+					Masse: 1,35x10<sup>23</sup> kg<br>
+					Température moyenne: -179<sup>o</sup>C<br>
+					Orbite: Saturne<br>
+					Distance d’Orbite: 1,2 millions de kilomètres<br>
+					Révolution:  15,9 jours<br>
+					Rotation:  15,9 jours<br>
+					Type: Satellite Naturel<br>
+					Composition: Azote, Méthane<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area enceladus">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Encelade<sup><a href="#li9" style="color: green">9</a></sup></u></div>
+					Diamètre: 499 km<br>
+					Masse: 1,08x10<sup>20</sup> kg<br>
+					Température moyenne: -201<sup>o</sup>C<br>
+					Orbite: Saturne<br>
+					Distance d’Orbite: 238 037 km<br>
+					Révolution:  32,9 jours<br>
+					Rotation:  32,9 jours<br>
+					Type: Satellite Naturel<br>
+					Composition: Eau, Dioxyde de Carbone, Méthane<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area uranus">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Uranus<sup><a href="#li5" style="color: green">5</a> <a href="#li9" style="color: green">9</a></sup></u></div>
+					Diamètre: 50 724 km<br>
+					Masse: 8,7x10<sup>25</sup> kg<br>
+					Température minimale: -226<sup>o</sup>C<br>
+					Température maximale: -197<sup>o</sup>C<br>
+					Orbite: Soleil<br>
+					Distance d’Orbite: 2,9 milliards de kilomètres<br>
+					Révolution: 84 ans<br>
+					Rotation: 17 heures<br>
+					Type: Planète Géante des Glaces<br>
+					Composition: Aucune atmosphère<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area miranda">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Miranda<sup><a href="#li4" style="color: green">4</a> <a href="#li9" style="color: green">9</a> <a href="#li10" style="color: green">10</a></sup></u></div>
+					Diamètre: 471 km<br>
+					Masse: 6,59x10<sup>19</sup> kg<br>
+					Température moyenne: -187<sup>o</sup>C<br>
+					Orbite: Uranus<br>
+					Distance d’Orbite: 129 900 km<br>
+					Révolution:  1,4 jours<br>
+					Rotation:  1,4 jours<br>
+					Type: Satellite Naturel<br>
+					Composition: Eau, Dioxyde de Carbone, Méthane<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area oberon">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Obéron<sup><a href="#li3" style="color: green">3</a> <a href="#li9" style="color: green">9</a> <a href="#li10" style="color: green">10</a></sup></u></div>
+					Diamètre: 1523 km<br>
+					Masse: 2,88x10<sup>21</sup> kg<br>
+					Température minimale: -203<sup>o</sup>C<br>
+					Température maximale: -193<sup>o</sup>C<br>
+					Orbite: Uranus<br>
+					Distance d’Orbite: 583 500 km<br>
+					Révolution:  13,5 jours<br>
+					Rotation:  13,5 jours<br>
+					Type: Satellite Naturel<br>
+					Composition: Aucune atmosphère<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area neptune">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Neptune<sup><a href="#li5" style="color: green">5</a></sup></u></div>
+					Diamètre: 49 244 km<br>
+					Masse: 1,0x10<sup>26</sup> kg<br>
+					Température minimale: -218<sup>o</sup>C<br>
+					Température maximale: -200<sup>o</sup>C<br>
+					Orbite: Soleil<br>
+					Distance d’Orbite: 4,5 milliards de kilomètres<br>
+					Révolution: 165 ans<br>
+					Rotation: Entre 12 et 18 heures, dépendant de la région<br>
+					Type: Planète Géante des Glaces<br>
+					Composition: Hydrogène, Hélium, Méthane, Ammoniac<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area triton">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Triton<sup><a href="#li9" style="color: green">9</a> <a href="#li12" style="color: green">12</a></sup></u></div>
+					Diamètre: 2 703 km<br>
+					Masse: 2,14x10<sup>22</sup> kg<br>
+					Température moyenne: -235<sup>o</sup>C<br>
+					Orbite: Neptune<br>
+					Distance d’Orbite: 354 759 km<br>
+					Révolution:  5,9 jours<br>
+					Rotation:  5,9 jours<br>
+					Type: Satellite Naturel<br>
+					Composition: Azote, Méthane<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area pluto">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Pluton<sup><a href="#li9" style="color: green">9</a></sup></u></div>
+					Diamètre: 2 302 km<br>
+					Masse: 1,309x10<sup>22</sup> kg<br>
+					Température minimale: -240<sup>o</sup>C<br>
+					Température maximale: -226<sup>o</sup>C<br>
+					Orbite: Soleil<br>
+					Distance d’Orbite: 5,906,440,628 km<br>
+					Révolution: 248 ans<br>
+					Rotation: 153 heures<br>
+					Type: Planète Naine<br>
+					Composition: Azote, Méthane, Dioxyde de Carbone<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area charon">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Charon<sup><a href="#li9" style="color: green">9</a> <a href="#li17" style="color: green">17</a></sup></u></div>
+					Diamètre: 1207,2 km<br>
+					Masse: 1,55x10<sup>21</sup> kg<br>
+					Température minimale: -233,15<sup>o</sup>C<br>
+					Température maximale: -223,15<sup>o</sup>C<br>
+					Orbite: Pluton<br>
+					Distance d’Orbite: 19 640 km<br>
+					Révolution: 153 heures<br>
+					Rotation: 153 heures<br>
+					Type: Satellite Naturel<br>
+					Composition: Aucune atmosphère<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area makemake">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Makémaké<sup><a href="#li9" style="color: green">9</a> <a href="#li19" style="color: green">19</a> <a href="#li21" style="color: green">21</a></sup></u></div>
+					Diamètre: 1 429 km<br>
+					Masse: 3,1x10<sup>21</sup> kg<br>
+					Température moyenne: -236<sup>o</sup>C<br>
+					Orbite: Soleil<br>
+					Distance d’Orbite: 6 783 345 606 km<br>
+					Révolution: 305 ans<br>
+					Rotation: 22,5 heures<br>
+					Type: Planète Naine<br>
+					Composition: Azote<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area haumea">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Hauméa<sup><a href="#li9" style="color: green">9</a> <a href="#li14" style="color: green">14</a> <a href="#li18" style="color: green">18</a></sup></u></div>
+					Diamètre: 1239 km<br>
+					Masse: 4,2x10<sup>21</sup> kg<br>
+					Température moyenne: -233<sup>o</sup>C<br>
+					Orbite: Soleil<br>
+					Distance d’Orbite: 6 432 011 461 km<br>
+					Révolution: 285 ans<br>
+					Rotation: 4 heures<br>
+					Type: Planète Naine<br>
+					Composition: Inconnue<br>
+    			</div>
+ 	 		</div>
+ 	 		<div class="invisible-area eris">
+ 	 			<div class="tooltip">
+     				<div style="text-align: center;"><u>Éris<sup><a href="#li9" style="color: green">9</a> <a href="#li15" style="color: green">15</a> <a href="#li22" style="color: green">22</a></sup></u></div>
+					Diamètre: 2 324 km<br>
+					Masse: 1,67x10<sup>22</sup> kg<br>
+					Température minimale: -243<sup>o</sup>C<br>
+					Température maximale: -217<sup>o</sup>C<br>
+					Orbite: Soleil<br>
+					Distance d’Orbite: 10 180 122 852 km<br>
+					Révolution: 557 ans<br>
+					Rotation: 25,9 heures<br>
+					Type: Planète Naine<br>
+					Composition: Azote, Méthane<br>
+    			</div>
+ 	 		</div>
+		</div>
+
+		<br>
+		<br>
+		<h1 id="title" style="font-size: 32px;">MÉDIAGRAPHIE</h1>
+		<div class="row">	
+			<div class="column">
+				<h3>VIDÉO EN LIGNE</h3>
+				<ol>
+					<li id="li1">NAT GEO FRANCE.<span style="font-style: italic;"> Tout comprendre sur : Mercure</span>, Novembre 2019, 3:16, dans National Geographic, <span style="font-style: italic;">YouTube</span>, YouTube, <a href="https://www.youtube.com/watch?v=AJbQnUju3Kg&amp;ab_channel=NatGeoFrance" target="_blank" rel="noopener">https://www.youtube.com/watch?v=AJbQnUju3Kg&amp;ab_channel=NatGeoFrance</a> (page consult&eacute;e le 14 Septembre 2020)
+					</li><br>
+				</ol>
+
+				<h3>PAGE WIKIPÉDIA</h3>
+				<ol start="2">
+					<li id="li2">&laquo;Io&raquo;, dans <span style="font-style: italic;">Wikipedia</span>, 2 avril 2002, <a href="https://en.wikipedia.org/wiki/Io_(moon)" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Io_(moon)</a> (Page consult&eacute;e le 7 octobre 2020)
+					</li><br>
+					<li id="li3">&laquo;Ob&eacute;ron&raquo; dans <span style="font-style: italic;">Wikip&eacute;dia</span>, 26 f&eacute;vrier 2004, <a href="https://fr.wikipedia.org/wiki/Ob%C3%A9ron_(lune)" target="_blank" rel="noopener">https://fr.wikipedia.org/wiki/Ob%C3%A9ron_(lune)</a> (Page consult&eacute;e le 7 octobre 2020)
+					</li><br>
+					<li id="li4">&laquo;Miranda&raquo; dans <span style="font-style: italic;">Wikip&eacute;dia</span>, 9 avril 2004, <a href="https://fr.wikipedia.org/wiki/Miranda_(lune)" target="_blank" rel="noopener">https://fr.wikipedia.org/wiki/Miranda_(lune)</a> (Page consult&eacute;e le 7 octobre 2020)
+					</li><br>
+				</ol>
+
+				<h3>SITE INTERNET</h3>
+				<ol start="5">
+					<li id="li5">AGENCE SPATIALE CANADIENNE. <span style="font-style: italic;">Le Syst&egrave;me Solaire</span>, [En ligne], <a href="https://www.asc-csa.gc.ca/fra/astronomie/systeme-solaire" target="_blank" rel="noopener">https://www.asc-csa.gc.ca/fra/astronomie/systeme-solaire</a> (Page consult&eacute;e le 27 Septembre 2020)
+					</li><br>
+					<li id="li6">CHRISTOPHE. <span style="font-style: italic;">Le syst&egrave;me solaire &agrave; port&eacute;e de votre souris</span>, [En ligne], <a href="https://www.le-systeme-solaire.net/" target="_blank" rel="noopener">https://www.le-systeme-solaire.net</a> (Page consult&eacute;e le 26 Septembre 2020)
+					</li><br>
+					<li id="li7">ERICKSON, Kristen et al. <span style="font-style: italic;">Deimos: Facts &amp; Figures</span>, [en ligne], <a href="https://web.archive.org/web/20121012044447/http://solarsystem.nasa.gov/planets/profile.cfm?Object=Mar_Deimos&amp;Display=Facts" target="_blank" rel="noopener">https://web.archive.org/web/20121012044447/http://solarsystem.nasa.gov/planets/profile.cfm?Object=Mar_Deimos&amp;Display=Facts</a> (Page consult&eacute;e le 7 octobre 2020)
+					</li><br>
+					<li id="li8">MICHALAK, G. <span style="font-style: italic;">Determination of asteroid masses --- I. (1) Ceres, (2) Pallas and (4) Vesta</span>, [En ligne], <a href="https://ui.adsabs.harvard.edu/abs/2000A%26A...360..363M/abstract" target="_blank" rel="noopener">https://ui.adsabs.harvard.edu/abs/2000A%26A...360..363M/abstract</a> (Page consult&eacute;e le 2 Octobre 2020)
+					</li><br>
+					<li id="li9">NASA. <span style="font-style: italic;">Plan&egrave;tes dans notre syst&egrave;me solaire</span>, [En ligne], <a href="https://solarsystem.nasa.gov/planets/overview/" target="_blank" rel="noopener">https://solarsystem.nasa.gov/planets/overview/</a> (Page consult&eacute;e le 27 Septembre 2020)
+					</li><br>
+					<li id="li10">PARK, Ryan et CHAMBERLIN, Alan. <span style="font-style: italic;">Planetary Satellite Mean Orbital Parameters</span>, [en ligne], <a href="https://ssd.jpl.nasa.gov/?sat_elem" target="_blank" rel="noopener">https://ssd.jpl.nasa.gov/?sat_elem</a> (Page consult&eacute;e le 7 octobre 2020)
+					</li><br>
+					<li id="li11">PARK, Ryan et CHAMBERLIN, Alan. <span style="font-style: italic;">Planetary Satellite Physical Parameters</span>, [en ligne], <a href="https://ssd.jpl.nasa.gov/?sat_phys_par" target="_blank" rel="noopener">https://ssd.jpl.nasa.gov/?sat_phys_par</a> (Page consult&eacute;e le 2 octobre 2020)
+					</li><br>
+					<li id="li12">WILLIAMS, David. <span style="font-style: italic;">Neptunian Satellite Fact Sheet</span>, [en ligne], <a href="https://nssdc.gsfc.nasa.gov/planetary/factsheet/neptuniansatfact.html" target="_blank" rel="noopener">https://nssdc.gsfc.nasa.gov/planetary/factsheet/neptuniansatfact.html</a> (Page consult&eacute;e le 6 octobre 2020)
+					</li><br>
+				</ol>
+
+				<h3>MÉMOIRE DE MAÎTRISE</h3>
+				<ol start="13">		
+					<li id="li13">
+					SPENCER, John Robert (1987). <span style="font-style: italic;">THE SURFACES OF EUROPA, GANYMEDE, AND CALLISTO: AN INVESTIGATION USING VOYAGER IRIS THERMAL INFRARED SPECTRA (JUPITER)</span> (M&eacute;moire de ma&icirc;trise). Universit&eacute; d&rsquo;Arizona. Recuper&eacute; de <a href="https://repository.arizona.edu/bitstream/handle/10150/184098/azu_td_8712912_sip1_m.pdf?sequence=1&amp;isAllowed=y" target="_blank" rel="noopener">https://repository.arizona.edu/bitstream/handle/10150/184098/azu_td_8712912_sip1_m.pdf?sequence=1&amp;isAllowed=y</a> (Page consult&eacute;e le 4 octobre 2020)
+					</li><br>
+				</ol>
+			</div>
+			<div class="column">
+				<h3>ARTICLE DANS UN PÉRIODIQUE EN LIGNE</h3>
+				<ol start="14">
+					<li id="li14">
+					BROWN, M. E. et al. &laquo;Keck Observatory Laser Guide Star Adaptive Optics Discovery and Characterization of a Satellite to the Large Kuiper Belt Object 2003 EL61&raquo;, <span style="font-style: italic;">The Astrophysical Journal</span>, 3 octobre 2005, [en ligne], <a href="https://iopscience.iop.org/article/10.1086/497641/pdf" target="_blank" rel="noopener">https://iopscience.iop.org/article/10.1086/497641/pdf</a> (Page consult&eacute;e le 10 octobre 2020)
+					</li><br>
+					<li id="li15">
+					BROWN, Michael et SCHALLER, Emily. &laquo;The Mass of Dwarf Planet Eris&raquo;, <span style="font-style: italic;">Science Magazine</span>, 15 juin 2007, [en ligne], <a href="https://science.sciencemag.org/content/316/5831/1585" target="_blank" rel="noopener">https://science.sciencemag.org/content/316/5831/1585</a> (Page consult&eacute;e le 7 octobre 2020)
+					</li><br>
+					<li id="li16">
+					CASTRO, Joseph. &laquo;What Would It Be Like to Live On Dwarf Planet Ceres in the Asteroid Belt?&raquo; <span style="font-style: italic;">Space.com</span>, 24 F&eacute;vrier 2015, [En ligne], <a href="https://www.space.com/28640-living-on-ceres-asteroid-belt.html" target="_blank" rel="noopener">https://www.space.com/28640-living-on-ceres-asteroid-belt.html</a> (Page consult&eacute;e le 2 Octobre 2020)
+					</li><br>
+					<li id="li17">
+					COOK, Jason et al. &laquo;NEAR-INFRARED SPECTROSCOPY OF CHARON: POSSIBLE EVIDENCE FOR CRYOVOLCANISM ON KUIPER BELT OBJECTS&raquo;, <span style="font-style: italic;">The Astrophysical Journal</span>, 14 janvier 2007, [en ligne],&nbsp; <a href="https://iopscience.iop.org/article/10.1086/518222/pdf" target="_blank" rel="noopener">https://iopscience.iop.org/article/10.1086/518222/pdf</a> (Page consult&eacute;e le 2 octobre 2020)
+					</li><br>
+					<li id="li18">
+					DUMAS, C. et al. &laquo;High-contrast observations of (136108) Haumea&raquo;, <span style="font-style: italic;">Astronomy &amp; Astrophysics</span>, 6 janvier 2011, [en ligne], <a href="https://www.aanda.org/articles/aa/pdf/2011/04/aa15011-10.pdf" target="_blank" rel="noopener">https://www.aanda.org/articles/aa/pdf/2011/04/aa15011-10.pdf</a> (Page consult&eacute;e le 10 octobre 2020)
+					</li><br>
+					<li id="li19">
+					LORENZI, V. et al. &laquo;Rotationally resolved spectroscopy of dwarf planet (136472) Makemake&raquo;, <span style="font-style: italic;">Astronomy &amp; Astrophysics</span>, 23 mars 2015, [en ligne], <a href="https://www.aanda.org/articles/aa/pdf/2015/05/aa25575-14.pdf" target="_blank" rel="noopener">https://www.aanda.org/articles/aa/pdf/2015/05/aa25575-14.pdf</a> (Page consult&eacute;e le 7 octobre 2020)
+					</li><br>
+					<li id="li20">
+					MOSES, Julianne et al. &laquo;Photochemistry of a Volcanically Driven Atmosphere on Io: Sulfur and Oxygen Species from a Pele-Type Eruption&raquo;, <span style="font-style: italic;">Icarus</span>, mars 2002, [en ligne],&nbsp; <a href="https://www.sciencedirect.com/science/article/abs/pii/S0019103501967582" target="_blank" rel="noopener">https://www.sciencedirect.com/science/article/abs/pii/S0019103501967582</a> (Page consult&eacute;e le 4 octobre 2020)
+					</li><br>
+					<li id="li21">
+					PARKER, Alex et al. &laquo;The Mass, Density, and Figure of the Kuiper Belt Dwarf Planet Makemake&raquo;, <span style="font-style: italic;">Max Planck Institut</span>, 25 octobre 2018, [en ligne], <a href="https://web.archive.org/web/20191204084356/http://www.mpe.mpg.de/~tmueller/sbnaf/doc/parker_dps18.pdf" target="_blank" rel="noopener">https://web.archive.org/web/20191204084356/http://www.mpe.mpg.de/ <br> ~tmueller/sbnaf/doc/parker_dps18.pdf</a> (Page consult&eacute;e le 7 octobre 2020)
+					</li><br>
+					<li id="li22">
+					SICARDY, B. et al. &laquo;Size, density, albedo and atmosphere limit of Eris from a stellar occultation&raquo;, <span style="font-style: italic;">European Planetary Science Congress</span>, 2011, [en ligne], <a href="https://orbi.uliege.be/bitstream/2268/107656/1/EPSC-DPS2011-sicardy.pdf" target="_blank" rel="noopener">https://orbi.uliege.be/bitstream/2268/107656/1/EPSC-DPS2011-sicardy.pdf</a> (Page consult&eacute;e le 7 octobre 2020)
+					</li><br>
+					<li id="li23">
+					SOTIN, Christophe et al. &laquo;Europa: Tidal heating of upwelling thermal plumes and the originof lenticulae and chaos melting&raquo;, <span style="font-style: italic;">Geophysical Research Letters</span>, 26 avril 2002, [en ligne], <a href="https://agupubs.onlinelibrary.wiley.com/doi/epdf/10.1029/2001GL013844" target="_blank" rel="noopener">https://agupubs.onlinelibrary.wiley.com/doi/epdf/10.1029/2001GL013844</a> (Page consult&eacute;e le 4 octobre 2020)	
+					</li><br>
+				</ol>
+			</div>
+		</div>
+	</div>	
+	</body>
